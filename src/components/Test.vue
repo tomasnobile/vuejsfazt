@@ -1,20 +1,7 @@
 <template>
-<div>
-	<div v-text="title"></div>
-	<div v-if="showName">
-		<p>{{usuario.firstName}}</p>
-	</div>
-	<div v-else>
-	<p>No puedo mostrar el nombre, lo siento.</p>
+<div class="test">	
+{{ msg }}
 </div>
-<hr>
-<ul>
-	<li v-for="task in tasks">
-		{{ task.title }}
-	</li>
-</ul>
-</div>
-
 </template>
 
 <script>
@@ -23,8 +10,8 @@
 			return {
 				title: 'Hola VueJs',
 				usuario: {
-					firstName: 'Juan',
-					lastName: 'Fernandez'
+					firstName: 'Fernando',
+					lastName: 'De la Ostia'
 				},
 				myHtml: '<h3>hola vue</h3',
 				showName: false,
@@ -36,12 +23,33 @@
 				]
 				
 			}
-		}
+		},
+// Funciones/metodos de VUE.JS, el cual usamos en el boton
+		methods: {
+			saludar(name) { 
+				alert("Hello " + name)
+				},
+			typedEnter(e) {
+				console.log('DIO UN ENTER');
 
+			}
+		},
+		computed: {
+			fullName() {
+				return this.usuario.firstName + ' ' + this.usuario.lastName;
+			}
+		},
+		props: {
+			msg: {
+				type: String,
+				default: 'Mensaje por defecto'
+			}
+		}
 	}
 </script>
 
-<style>
-	
-
+<style media="screen">
+	.test{
+		background-color: #eee;
+	}
 </style>
